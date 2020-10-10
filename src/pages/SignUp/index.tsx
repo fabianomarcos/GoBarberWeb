@@ -24,7 +24,9 @@ interface SignUpFormData {
 
 const SigUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
+
   const { addToast } = useToast();
+
   const history = useHistory();
 
   const handleSubmit = useCallback(
@@ -55,27 +57,21 @@ const SigUp: React.FC = () => {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
-  const handleSubmit = useCallback(async (data: object) => {
-    formRef.current?.setErrors({});
-    const message = 'Campo obrigatório';
-    try {
-      const schema = Yup.object().shape({
-        name: Yup.string().required(message),
-        email: Yup.string().required(message).email('Digite um email válido'),
-        password: Yup.string().min(6, 'Senha deve ter  no mínimo 6 dígitos'),
-      });
+          formRef.current?.setErrors(errors);
 
-      await schema.validate(data, {
-        abortEarly: false,
-      });
-    } catch (err) {
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErrors(err);
+          return;
+        }
 
-        formRef.current?.setErrors(errors);
+        addToast({
+          type: 'error',
+          title: 'Erro no cadastro',
+          description:
+            'Ocorreu um erro ao tentar realizar o cadastro, tente novamente.',
+        });
       }
-    }
-  }, []);
+    },
+    [addToast, history],
+  );
 
   return (
     <Container>

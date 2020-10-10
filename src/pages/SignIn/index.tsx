@@ -58,7 +58,6 @@ const SigIn: React.FC = () => {
 
           return;
         }
-      }
 
         addToast({
           type: 'error',

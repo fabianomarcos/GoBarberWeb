@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { FiLogIn, FiMail } from 'react-icons/fi';
 import * as Yup from 'yup';
 
@@ -84,15 +84,15 @@ const ForgotPassword: React.FC = () => {
 
             <Input name="email" icon={FiMail} placeholder="E-mail" />
 
-          <Button loading={loading} type="submit">
-            Recuperar
-          </Button>
-        </Form>
+            <Button loading={loading} type="submit">
+              Recuperar
+            </Button>
+          </Form>
 
-        <Link to="/">
-          <FiLogIn />
-          Voltar ao login
-        </Link>
+          <Link to="/">
+            <FiLogIn />
+            Voltar ao login
+          </Link>
         </AnimationContainer>
       </Content>
       <Background />
