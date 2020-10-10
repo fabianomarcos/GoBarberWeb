@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { FiLogIn, FiMail } from 'react-icons/fi';
 import * as Yup from 'yup';
 
@@ -7,7 +7,7 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 
 import logoImg from '../../assets/logo.svg';
-import { Container, Content, Background } from './styles';
+import { Container, Content, Background, AnimationContainer } from './styles';
 
 import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -76,12 +76,13 @@ const ForgotPassword: React.FC = () => {
   return (
     <Container>
       <Content>
-        <img src={logoImg} alt="GoBarber" />
+        <AnimationContainer>
+          <img src={logoImg} alt="GoBarber" />
 
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>Recuperar senha</h1>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>Recuperar senha</h1>
 
-          <Input name="email" icon={FiMail} placeholder="E-mail" />
+            <Input name="email" icon={FiMail} placeholder="E-mail" />
 
           <Button loading={loading} type="submit">
             Recuperar
@@ -92,6 +93,7 @@ const ForgotPassword: React.FC = () => {
           <FiLogIn />
           Voltar ao login
         </Link>
+        </AnimationContainer>
       </Content>
       <Background />
     </Container>
