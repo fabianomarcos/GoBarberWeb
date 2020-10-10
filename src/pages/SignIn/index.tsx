@@ -31,9 +31,9 @@ const SigIn: React.FC = () => {
 
   const handleSubmit = useCallback(
     async (data: SignInFormData) => {
-      formRef.current?.setErrors({});
-      const message = 'Campo obrigatório';
       try {
+        formRef.current?.setErrors({});
+        const message = 'Campo obrigatório';
         const schema = Yup.object().shape({
           email: Yup.string().required(message).email('Digite um email válido'),
           password: Yup.string().required(message),
@@ -49,11 +49,14 @@ const SigIn: React.FC = () => {
         });
 
         history.push('/dashboard');
-
       } catch (err) {
-        const errors = getValidationErrors(err);
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
 
-        formRef.current?.setErrors(errors);
+          formRef.current?.setErrors(errors);
+
+          return;
+        }
       }
 
       addToast({
