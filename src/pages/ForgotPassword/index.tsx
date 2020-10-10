@@ -1,5 +1,5 @@
 import React, { useCallback, useRef } from 'react';
-import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
+import { FiLogIn, FiMail } from 'react-icons/fi';
 import * as Yup from 'yup';
 
 import { Link } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 
 import logoImg from '../../assets/logo.svg';
-import { Container, Content, Background } from './styles';
+import { Container, Content, Background, AnimationContainer } from './styles';
 
 import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -56,21 +56,22 @@ const ForgotPassword: React.FC = () => {
   return (
     <Container>
       <Content>
-        <img src={logoImg} alt="GoBarber" />
+        <AnimationContainer>
+          <img src={logoImg} alt="GoBarber" />
 
-        <Form ref={formRef} onSubmit={handleSubmit}>
-          <h1>Recuperar senha</h1>
+          <Form ref={formRef} onSubmit={handleSubmit}>
+            <h1>Recuperar senha</h1>
 
-          <Input name="email" icon={FiMail} placeholder="E-mail" />
+            <Input name="email" icon={FiMail} placeholder="E-mail" />
 
-          <Button type="submit">Recuperar</Button>
+            <Button type="submit">Recuperar</Button>
+          </Form>
 
-        </Form>
-
-        <Link to="/signIn">
-          <FiLogIn />
-          Voltar ao login
-        </Link>
+          <Link to="/">
+            <FiLogIn />
+            Voltar ao login
+          </Link>
+        </AnimationContainer>
       </Content>
       <Background />
     </Container>
