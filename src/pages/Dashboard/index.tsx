@@ -1,96 +1,71 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import income from '../../assets/income.svg';
-import outcome from '../../assets/outcome.svg';
-import total from '../../assets/total.svg';
+import { FiClock, FiPower } from 'react-icons/fi';
 
-import Header from '../../components/Header';
+import {
+  Container,
+  HeaderContent,
+  Profile,
+  Header,
+  Content,
+  Schedule,
+  NextAppointment,
+  Calendar,
+} from './styles';
 
-import { Container, CardContainer, Card, TableContainer } from './styles';
-
-interface Transaction {
-  id: string;
-  title: string;
-  value: number;
-  formattedValue: string;
-  formattedDate: string;
-  type: 'income' | 'outcome';
-  category: { title: string };
-  created_at: Date;
-}
-
-interface Balance {
-  income: string;
-  outcome: string;
-  total: string;
-}
+import logoImg from '../../assets/logo.svg';
+import { useAuth } from '../../hooks/auth';
 
 const Dashboard: React.FC = () => {
-  useEffect(() => {
-    async function loadTransactions(): Promise<void> {
-      // TODO
-    }
-
-    loadTransactions();
-  }, []);
+  const { signOut, user } = useAuth();
+  const imgDefault =
+    'https://avatars2.githubusercontent.com/u/42679820?s=460&u=452f7ed7a54b5017b9335b402644bb0cf9f41d0d&v=4';
 
   return (
-    <>
-      <Header />
-      <Container>
-        <CardContainer>
-          <Card>
-            <header>
-              <p>Entradas</p>
-              <img src={income} alt="Income" />
-            </header>
-            <h1 data-testId="balance-income">R$ 5.000,00</h1>
-          </Card>
-          <Card>
-            <header>
-              <p>Saídas</p>
-              <img src={outcome} alt="Outcome" />
-            </header>
-            <h1 data-testId="balance-outcome">R$ 1.000,00</h1>
-          </Card>
-          <Card total>
-            <header>
-              <p>Total</p>
-              <img src={total} alt="Total" />
-            </header>
-            <h1 data-testId="balance-total">R$ 4000,00</h1>
-          </Card>
-        </CardContainer>
+    <Container>
+      <Header>
+        <HeaderContent>
+          <img src={logoImg} alt="GoBarber" />
 
-        <TableContainer>
-          <table>
-            <thead>
-              <tr>
-                <th>Título</th>
-                <th>Preço</th>
-                <th>Categoria</th>
-                <th>Data</th>
-              </tr>
-            </thead>
+          <Profile>
+            <img src={user.avatar_url || imgDefault} alt={user.name} />
+            <div>
+              <span>Bem-vindo,</span>
+              <strong>{user.name}</strong>
+            </div>
+          </Profile>
 
-            <tbody>
-              <tr>
-                <td className="title">Computer</td>
-                <td className="income">R$ 5.000,00</td>
-                <td>Sell</td>
-                <td>20/04/2020</td>
-              </tr>
-              <tr>
-                <td className="title">Website Hosting</td>
-                <td className="outcome">- R$ 1.000,00</td>
-                <td>Hosting</td>
-                <td>19/04/2020</td>
-              </tr>
-            </tbody>
-          </table>
-        </TableContainer>
-      </Container>
-    </>
+          <button type="button" onClick={signOut}>
+            <FiPower />
+          </button>
+        </HeaderContent>
+      </Header>
+
+      <Content>
+        <Schedule>
+          <h1>Horários Agendados</h1>
+          <p>
+            <span>Hoje</span>
+            <span>Hoje</span>
+            <span>Hoje</span>
+          </p>
+
+          <NextAppointment>
+            <strong>Atendimento a seguir</strong>
+            <div>
+              <img src={imgDefault} alt="Fabiano Marcos" />
+
+              <strong>Fabiano Marcos</strong>
+              <span>
+                <FiClock />
+                <span>08:00</span>
+              </span>
+            </div>
+          </NextAppointment>
+        </Schedule>
+        <Calendar />
+      </Content>
+    </Container>
   );
 };
 

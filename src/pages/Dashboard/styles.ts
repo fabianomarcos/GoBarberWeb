@@ -1,95 +1,149 @@
 import styled from 'styled-components';
 
-interface CardProps {
-  total?: boolean;
-}
+export const Container = styled.div``;
 
-export const Container = styled.div`
-  width: 100%;
+export const Header = styled.header`
+  padding: 32px 0;
+  background: #28262e;
+`;
+
+export const HeaderContent = styled.div`
   max-width: 1120px;
   margin: 0 auto;
-  padding: 40px 20px;
-`;
+  display: flex;
+  align-items: center;
 
-export const Title = styled.h1`
-  font-size: 48px;
-  color: #3a3a3a;
-`;
+  > img {
+    height: 80px;
+  }
 
-export const CardContainer = styled.section`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 32px;
-  margin-top: -150px;
-`;
+  button {
+    margin-left: auto;
+    background: transparent;
+    border: 0;
 
-export const Card = styled.div`
-  background: ${({ total }: CardProps): string => (total ? '#FF872C' : '#fff')};
-  padding: 22px 32px;
-  border-radius: 5px;
-  color: ${({ total }: CardProps): string => (total ? '#fff' : '#363F5F')};
-
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    p {
-      font-size: 16px;
+    svg {
+      color: #999591;
     }
   }
+`;
+
+export const Profile = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 80px;
+
+  img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+    line-height: 24px;
+  }
+
+  span {
+    color: #f4ede8;
+  }
+
+  strong {
+    color: #ff9000;
+  }
+`;
+
+export const Content = styled.main`
+  max-width: 1120px;
+  margin: 64px auto;
+  display: flex;
+`;
+
+export const Schedule = styled.div`
+  flex: 1;
+  margin-right: 120px;
 
   h1 {
-    margin-top: 14px;
     font-size: 36px;
-    font-weight: normal;
-    line-height: 54px;
+  }
+
+  p {
+    margin-top: 8px;
+    color: #ff9000;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+
+    span {
+      display: flex;
+      align-items: center;
+    }
+
+    span + span::before {
+      content: '';
+      width: 1px;
+      height: 12px;
+      background: #ff9000;
+      margin: 0 8px;
+    }
   }
 `;
 
-export const TableContainer = styled.section`
+export const NextAppointment = styled.div`
   margin-top: 64px;
 
-  table {
-    width: 100%;
-    border-spacing: 0 8px;
+  > strong {
+    color: #999591;
+    font-size: 20px;
+    font-weight: 400;
+  }
 
-    th {
-      color: #969cb3;
-      font-weight: normal;
-      padding: 20px 32px;
-      text-align: left;
-      font-size: 16px;
-      line-height: 24px;
+  div {
+    background: #3e3b47;
+    display: flex;
+    align-items: center;
+    padding: 16px 24px;
+    border-radius: 10px;
+    margin-top: 24px;
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      height: 80%;
+      width: 1px;
+      left: 0;
+      top: 10%;
+      background: #ff9000;
     }
 
-    td {
-      padding: 20px 32px;
-      border: 0;
-      background: #fff;
-      font-size: 16px;
-      font-weight: normal;
-      color: #969cb3;
-
-      &.title {
-        color: #363f5f;
-      }
-
-      &.income {
-        color: #12a454;
-      }
-
-      &.outcome {
-        color: #e83f5b;
-      }
+    img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
     }
 
-    td:first-child {
-      border-radius: 8px 0 0 8px;
+    strong {
+      margin-left: 24px;
+      color: #fff;
     }
 
-    td:last-child {
-      border-radius: 0 8px 8px 0;
+    span {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      color: '#999591';
+
+      svg {
+        color: #ff9000;
+        margin-right: 8px;
+      }
     }
   }
+`;
+
+export const Calendar = styled.aside`
+  width: 380px;
 `;

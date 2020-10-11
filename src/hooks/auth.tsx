@@ -7,13 +7,18 @@ interface SignInCredentials {
   password: string;
 }
 
+interface User {
+  id: string;
+  avatar_url: string;
+  name: string;
+}
 interface AuthState {
   token: string;
-  user: object;
+  user: User;
 }
 
 interface AuthContextData {
-  user: object;
+  user: User;
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
 }
