@@ -30,6 +30,7 @@
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
+    "coverage": "react-scripts test --coverage --watchAll false",
     "eject": "react-scripts eject"
   },
   "browserslist": {
