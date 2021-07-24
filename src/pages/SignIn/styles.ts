@@ -23,7 +23,7 @@ export const Content = styled.div`
 const appearFromLeft = keyframes`
   from {
     opacity: 1;
-    transform: translateX(-50px);
+    transform: translateX(-150px);
   }
   to {
     opacity: 1;
@@ -39,7 +39,7 @@ export const AnimationContainer = styled.div`
   animation: ${appearFromLeft} 1s;
 
   form {
-    margin: 80px 0;
+    margin: 48px 0;
     width: 340px;
     text-align: center;
 
